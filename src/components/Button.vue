@@ -1,32 +1,34 @@
 <script setup lang="ts">
+import LoadingDots from '@/components/LoadingDots.vue';
+
 interface Props {
   type?: 'button' | 'submit';
   disabled?: boolean;
   loading?: boolean;
-  class?: string;
+  className?: string;
 }
 
 withDefaults(defineProps<Props>(), {
   type: 'button',
   disabled: false,
   loading: false,
-  class: '',
+  className: '',
 });
 </script>
 
 <template>
   <button
     :type="type"
-    :disabled="disabled || loading"
-    class="btn-primary w-full text-sm sm:text-base py-2 sm:py-2.5 min-h-[44px] sm:min-h-[48px]"
-    :class="class"
+    :disabled="disabled"
+    :class="[
+      'btn-primary w-full text-sm sm:text-base py-2 sm:py-2.5 min-h-[44px] sm:min-h-[48px]',
+      loading ? 'loading' : '',
+      (disabled || loading) ? 'cursor-not-allowed opacity-50' : '',
+      className
+    ]"
   >
-    <span v-if="loading" class="flex items-center justify-center gap-2">
-      <span class="loading-dot"></span>
-      <span class="loading-dot delay-1"></span>
-      <span class="loading-dot delay-2"></span>
-    </span>
-    <span :class="{ 'opacity-0': loading }">
+    <LoadingDots v-if="loading" />
+    <span v-else>
       <slot />
     </span>
   </button>
