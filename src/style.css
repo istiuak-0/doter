@@ -220,3 +220,17 @@ body {
     gap: 0.5rem;
   }
 }
+
+/* Sidebar styles */
+.sidebar-transition {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Neon glow effect for primary elements */
+.neon-glow {
+  box-shadow: 0 0 20px rgba(90, 174, 255, 0.3);
+}
+
+.neon-glow:hover {
+  box-shadow: 0 0 30px rgba(90, 174, 255, 0.5);
+}

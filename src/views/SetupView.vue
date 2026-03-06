@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { Icon } from '@iconify/vue';
 import Card from '@/components/Card.vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
 import Logo from '@/components/Logo.vue';
 
+const router = useRouter();
 const email = ref('');
 const password = ref('');
 const storageType = ref<'local' | 'drive' | 'github'>('local');
@@ -14,7 +16,7 @@ const loading = ref(false);
 function handleSubmit() {
   loading.value = true;
   setTimeout(() => {
-    loading.value = false;
+    router.push('/main');
   }, 1000);
 }
 </script>
