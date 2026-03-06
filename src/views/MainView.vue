@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import ButtonGroup from '@/components/ButtonGroup.vue';
+import Sidebar from '@/components/Sidebar.vue';
 </script>
 
 <template>
   <div class="min-h-screen bg-gradient-main">
+    <!-- Sidebar -->
+    <Sidebar />
+
     <!-- Button Group - Top Left Corner -->
-    <div class="fixed top-4 left-4 z-30">
+    <div class="fixed top-4 left-2 z-50 sm:left-4 sm:top-4">
       <ButtonGroup />
     </div>
 
