@@ -1,1 +1,222 @@
 @import "tailwindcss";
+
+:root {
+  /* Dark theme - deep blue palette */
+  --background: #0f1115;
+  --foreground: #e6e8eb;
+  
+  --card: #161a21;
+  --card-foreground: #e6e8eb;
+  
+  --primary: #5aaeff;
+  --primary-foreground: #0a0e1a;
+  
+  --secondary: #1e293b;
+  --secondary-foreground: #cbd5e1;
+  
+  --muted: #1a1f27;
+  --muted-foreground: #8e97a3;
+  
+  --accent: #1e3a8a;
+  --accent-foreground: #dbeafe;
+  
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  
+  --border: #262c36;
+  --input: #1c222c;
+  --ring: #5aaeff;
+  
+  --heading: #ffffff;
+  --body: #9ca3af;
+  
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-heading: var(--heading);
+  --color-body: var(--body);
+  
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+}
+
+* {
+  border-color: var(--border);
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  height: 100%;
+}
+
+/* Gradient background */
+.bg-gradient-main {
+  background: radial-gradient(ellipse at top, #1a2332 0%, var(--background) 60%);
+  min-height: 100vh;
+}
+
+/* Button base styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: var(--radius-lg);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 20px rgba(90, 174, 255, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #4a9aef;
+  box-shadow: 0 0 25px rgba(90, 174, 255, 0.4);
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+/* Loading dots animation */
+.loading-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--primary-foreground);
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite both;
+}
+
+.loading-dot.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.loading-dot.delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+    box-shadow: 0 0 0 rgba(90, 174, 255, 0);
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(90, 174, 255, 0.6);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: none;
+  ring: 2px solid var(--ring);
+  ring-offset: 2px;
+}
+
+/* Touch-friendly minimum sizes */
+@media (max-width: 640px) {
+  button,
+  input,
+  select,
+  [role="button"] {
+    min-height: 44px;
+  }
+}
+
+/* Small devices (481px - 640px) */
+@media (max-width: 640px) {
+  .btn-primary {
+    padding: 0.625rem 1rem;
+  }
+}
+
+/* Extra small devices (320px - 480px) */
+@media (max-width: 480px) {
+  :root {
+    --radius: 0.5rem;
+  }
+
+  h1, .text-xl {
+    font-size: 1.125rem;
+  }
+
+  h2, .text-lg {
+    font-size: 1rem;
+  }
+}
+
+/* Very small devices (down to 320px) */
+@media (max-width: 360px) {
+  .btn-primary {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+}
