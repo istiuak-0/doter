@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
-    "iocraft": "^0.2.7",
+    "iocraft": "^0.2.8",
     "tailwindcss": "^4.2.1",
     "vue": "beta",
     "vue-router": "^5.0.3"

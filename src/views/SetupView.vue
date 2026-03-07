@@ -1,26 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import { Icon } from '@iconify/vue';
 import Card from '@/components/Card.vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
 import Logo from '@/components/Logo.vue';
+import { obtain } from 'iocraft';
+import { Nav } from 'iocraft/common';
+import { SetupService } from '@/services/Setup.service';
 
-const route = useRouter()
+const { handleSubmit, storageType, email, password, loading } = obtain(SetupService)
 
-const email = ref("");
-const password = ref("");
-const storageType = ref<"local" | "drive" | "github">("local");
-const loading = ref(false);
-
-function handleSubmit() {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    route.push('/main')
-  }, 4000);
-}
 
 </script>
 

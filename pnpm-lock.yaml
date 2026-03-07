@@ -27,8 +27,8 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1(vite@8.0.0-beta.16(@types/node@24.12.0)(jiti@2.6.1)(yaml@2.8.2))
       iocraft:
-        specifier: ^0.2.7
-        version: 0.2.7(vue-router@5.0.3(vue@3.6.0-beta.7(typescript@5.9.3)))(vue@3.6.0-beta.7(typescript@5.9.3))
+        specifier: ^0.2.8
+        version: 0.2.8(vue-router@5.0.3(vue@3.6.0-beta.7(typescript@5.9.3)))(vue@3.6.0-beta.7(typescript@5.9.3))
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
@@ -800,8 +800,8 @@ packages:
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
 
-  iocraft@0.2.7:
-    resolution: {integrity: sha512-nn0a3EEGlWbji3RoZv9aSu6EqvDb8Tl1OqVkp1FFmu1CPgt0LpHd3EuJHC6gNKQh0Wa2e1oE2FMwg2IGdtMoaw==}
+  iocraft@0.2.8:
+    resolution: {integrity: sha512-JjaDO6H8rnvWFo5aZaVvili3YQ7UmSPSBTHSABhGq0fyhNmstd/wzB3+jOhk2pdo0EhHBOTyiJbl0jKknr4ZNQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       vue: ^3.0.0
@@ -1930,7 +1930,7 @@ snapshots:
 
   hookable@5.5.3: {}
 
-  iocraft@0.2.7(vue-router@5.0.3(vue@3.6.0-beta.7(typescript@5.9.3)))(vue@3.6.0-beta.7(typescript@5.9.3)):
+  iocraft@0.2.8(vue-router@5.0.3(vue@3.6.0-beta.7(typescript@5.9.3)))(vue@3.6.0-beta.7(typescript@5.9.3)):
     dependencies:
       vue: 3.6.0-beta.7(typescript@5.9.3)
       vue-router: 5.0.3(vue@3.6.0-beta.7(typescript@5.9.3))
