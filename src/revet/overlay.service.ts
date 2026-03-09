@@ -1,35 +1,15 @@
-import { attach } from "iocraft"
-import type { Component } from "vue"
-import { OverlayRef } from "./overlay.ref"
-import { overlayBus } from "./overlay.bus"
-
-
-export interface DialogOptions {
-  data?: Record<string, any>
-  closeOnEscape?: boolean
-  closeOnBackdrop?: boolean
-  persistent?: boolean
-  onBeforeClose?: () => boolean | Promise<boolean>
-  position?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-  draggable?: boolean
-  resizable?: boolean
-  keepInViewport?: boolean
-  enterAnimation?: string
-  leaveAnimation?: string
-  appendTo?: string | HTMLElement
-  ariaLabelledBy?: string
-}
+import { attach } from "iocraft";
+import { markRaw, reactive, type Component } from "vue";
 
 @attach()
 export class OverlayService {
-  dialog(component: Component, options: DialogOptions = {}): OverlayRef {
-    const id = crypto.randomUUID()
+  overlays = reactive<Array<{ id: string; component: Component }>>([]);
 
-    overlayBus.emit({
-      type: 'open',
-      instance: { id, component, options }
-    })
-
-    return new OverlayRef(id)
+  dialog(component: Component) {
+    const id = crypto.randomUUID();
+        this.overlays.push({ 
+      id, 
+      component: markRaw(component) 
+    });
   }
 }

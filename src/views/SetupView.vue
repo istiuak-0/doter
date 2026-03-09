@@ -7,26 +7,18 @@ import Logo from '@/components/Logo.vue';
 import { obtain } from 'iocraft';
 import { Nav } from 'iocraft/common';
 import { SetupService } from '@/services/Setup.service';
+import { OverlayService } from '@/revet/overlay.service';
+import ConfirmDialog from '@/components/ConfirmDialog.vue';
 
 const { handleSubmit, storageType, email, password, loading } = obtain(SetupService)
-
-import ConfirmDialog from '@/components/ConfirmDialog.vue';
-import { OverlayService } from '@/revet/overlay.service';
 
 
 
 const overlay = obtain(OverlayService)
 
 function openConfirm() {
-  const ref = overlay.dialog(ConfirmDialog, {
-    data: { message: 'Are you sure?' },
-    closeOnBackdrop: true,
-    position: 'center'
-  })
+overlay.dialog(ConfirmDialog)
 
-  ref.on('close', (result) => {
-    console.log('dialog closed with', result)
-  })
 }
 
 

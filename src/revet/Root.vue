@@ -1,31 +1,14 @@
-<!-- RevetRoot.vue -->
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
-import DialogWrapper from './DialogWrapper.vue'
-import { overlayBus, type OverlayInstance } from './overlay.bus'
+import { obtain } from 'iocraft';
+import { OverlayService } from './overlay.service';
 
-const overlays = ref<OverlayInstance[]>([])
 
-const cleanup = overlayBus.on((event) => {
-  if (event.type === 'open') {
-    overlays.value.push(event.instance)
-  }
-  if (event.type === 'close') {
-    overlays.value = overlays.value.filter(o => o.id !== event.id)
-  }
-})
-
-onUnmounted(cleanup)
+const { overlays } = obtain(OverlayService)
 </script>
-
 <template>
-  <slot />   <!-- your app -->
+<slot></slot>
 
-  <teleport to="body">
-    <DialogWrapper
-      v-for="overlay in overlays"
-      :key="overlay.id"
-      :overlay="overlay"
-    />
-  </teleport>
+
+  <component v-for="overlay in overlays" :is="overlay.component" />
+
 </template>
