@@ -10,10 +10,34 @@ import { SetupService } from '@/services/Setup.service';
 
 const { handleSubmit, storageType, email, password, loading } = obtain(SetupService)
 
+import ConfirmDialog from '@/components/ConfirmDialog.vue';
+import { OverlayService } from '@/revet/overlay.service';
+
+
+
+const overlay = obtain(OverlayService)
+
+function openConfirm() {
+  const ref = overlay.dialog(ConfirmDialog, {
+    data: { message: 'Are you sure?' },
+    closeOnBackdrop: true,
+    position: 'center'
+  })
+
+  ref.on('close', (result) => {
+    console.log('dialog closed with', result)
+  })
+}
+
+
+
+
 
 </script>
 
 <template>
+
+  <Button @click="openConfirm">open</Button>
   <div class="bg-gradient-main min-h-screen flex items-center justify-center p-3 sm:p-4 lg:p-8">
     <Card class="w-full max-w-md mx-auto">
       <!-- Header -->
