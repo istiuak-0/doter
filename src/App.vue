@@ -4,7 +4,7 @@ import Root from './revet/Root.vue';
 </script>
 
 <template>
-  <Root>
     <RouterView />
-  </Root>
+  <!-- <Root>
+  </Root> -->
 </template>

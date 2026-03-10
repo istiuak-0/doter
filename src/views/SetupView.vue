@@ -14,12 +14,6 @@ const { handleSubmit, storageType, email, password, loading } = obtain(SetupServ
 
 
 
-const overlay = obtain(OverlayService)
-
-function openConfirm() {
-overlay.dialog(ConfirmDialog)
-
-}
 
 
 
@@ -28,8 +22,6 @@ overlay.dialog(ConfirmDialog)
 </script>
 
 <template>
-
-  <Button @click="openConfirm">open</Button>
   <div class="bg-gradient-main min-h-screen flex items-center justify-center p-3 sm:p-4 lg:p-8">
     <Card class="w-full max-w-md mx-auto">
       <!-- Header -->
@@ -65,7 +57,7 @@ overlay.dialog(ConfirmDialog)
                 <span class="text-[10px] sm:text-xs font-medium">Local</span>
               </button>
 
-              <button type="button" @click="storageType = 'drive'" :class="[
+              <!-- <button type="button" @click="storageType = 'drive'" :class="[
                 'flex flex-col items-center gap-1 sm:gap-1.5 rounded-lg border p-2 sm:p-3 transition-all min-w-[64px] sm:min-w-[72px]',
                 storageType === 'drive'
                   ? 'border-primary bg-primary/10 text-primary'
@@ -74,9 +66,9 @@ overlay.dialog(ConfirmDialog)
                 <Icon icon="mdi:google-drive"
                   :class="['w-5 h-5 sm:w-6 sm:h-6', storageType === 'drive' ? 'text-primary' : '']" />
                 <span class="text-[10px] sm:text-xs font-medium">Drive</span>
-              </button>
+              </button> -->
 
-              <button type="button" @click="storageType = 'github'" :class="[
+              <!-- <button type="button" @click="storageType = 'github'" :class="[
                 'flex flex-col items-center gap-1 sm:gap-1.5 rounded-lg border p-2 sm:p-3 transition-all min-w-[64px] sm:min-w-[72px]',
                 storageType === 'github'
                   ? 'border-primary bg-primary/10 text-primary'
@@ -85,17 +77,9 @@ overlay.dialog(ConfirmDialog)
                 <Icon icon="mdi:github"
                   :class="['w-5 h-5 sm:w-6 sm:h-6', storageType === 'github' ? 'text-primary' : '']" />
                 <span class="text-[10px] sm:text-xs font-medium">GitHub</span>
-              </button>
+              </button> -->
             </div>
           </div>
-
-          <!-- Email Input -->
-          <Input v-model="email" type="email" label="Email Address" placeholder="name@example.com" icon="mdi:email" />
-
-          <!-- Password Input -->
-          <Input v-model="password" type="password" label="Password" placeholder="Enter your password"
-            icon="mdi:lock" />
-
           <!-- Submit Button -->
           <Button type="submit" :loading="loading" className="w-full mt-2 sm:mt-4">
             Continue
