@@ -1,52 +1,40 @@
-import { app, BrowserWindow, shell } from 'electron'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { app, BrowserWindow, shell } from "electron";
+import path from "node:path";
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+process.env.APP_ROOT = path.join(import.meta.dirname, "..");
 
-process.env.APP_ROOT = path.join(__dirname, '..')
-
-export const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
-export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist')
+export const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+export const RENDERER_DIST = path.join(process.env.APP_ROOT, "dist");
 
 process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
-  ? path.join(process.env.APP_ROOT, 'public')
-  : RENDERER_DIST
-
-let win: BrowserWindow | null
+  ? path.join(process.env.APP_ROOT, "public")
+  : RENDERER_DIST;
 
 function createWindow() {
-  win = new BrowserWindow({
+  const win = new BrowserWindow({
     width: 1280,
     height: 800,
-    icon: path.join(process.env.VITE_PUBLIC!, 'icon.png'),
+    icon: path.join(process.env.VITE_PUBLIC!, "icon.png"),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(import.meta.dirname, "preload.js"),
       nodeIntegration: false,
       contextIsolation: true,
+      sandbox: true,
     },
-  })
+  });
 
   win.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith('https:')) shell.openExternal(url)
-    return { action: 'deny' }
-  })
+    if (url.startsWith("https:")) shell.openExternal(url);
+    return { action: "deny" };
+  });
 
   if (VITE_DEV_SERVER_URL) {
-    win.loadURL(VITE_DEV_SERVER_URL)
-    win.webContents.openDevTools()
+    win.loadURL(VITE_DEV_SERVER_URL);
+    win.webContents.openDevTools();
   } else {
-    win.loadFile(path.join(RENDERER_DIST, 'index.html'))
+    win.loadFile(path.join(RENDERER_DIST, "index.html"));
+    win.webContents.openDevTools();
   }
 }
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') { app.quit(); win = null }
-})
-
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) createWindow()
-})
-
-app.whenReady().then(createWindow)
+app.whenReady().then(createWindow);

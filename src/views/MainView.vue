@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import ButtonGroup from '@/components/ButtonGroup.vue'
 import Sidebar from '@/components/Sidebar.vue'
 </script>
@@ -26,8 +27,6 @@ import Sidebar from '@/components/Sidebar.vue'
             Your notes will appear here. Select or create a note to start editing.
           </p>
         </div>
-
-        <Show />
       </div>
     </main>
   </div>
