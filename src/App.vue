@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import Root from './revet/Root.vue';
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-    <RouterView />
-  <!-- <Root>
-  </Root> -->
+  <RouterView />
 </template>

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   /* Dark theme - deep blue palette */
@@ -66,14 +66,19 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
   background-color: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
@@ -123,7 +128,7 @@ body {
   button,
   input,
   select,
-  [role="button"] {
+  [role='button'] {
     min-height: 44px;
   }
 }
@@ -134,11 +139,13 @@ body {
     --radius: 0.5rem;
   }
 
-  h1, .text-xl {
+  h1,
+  .text-xl {
     font-size: 1.125rem;
   }
 
-  h2, .text-lg {
+  h2,
+  .text-lg {
     font-size: 1rem;
   }
 }

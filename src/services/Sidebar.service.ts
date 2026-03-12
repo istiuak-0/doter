@@ -1,17 +1,17 @@
-import { attach } from 'iocraft';
-import { ref } from 'vue';
+import { attach } from 'iocraft'
+import { ref } from 'vue'
 
 interface FileTreeNode {
-  id: string;
-  name: string;
-  type: 'file' | 'folder';
-  children?: FileTreeNode[];
+  id: string
+  name: string
+  type: 'file' | 'folder'
+  children?: FileTreeNode[]
 }
 
 @attach()
 export class SidebarService {
-  isOpen = ref(false);
-  
+  isOpen = ref(false)
+
   fileTreeData = ref<FileTreeNode[]>([
     {
       id: '1',
@@ -32,17 +32,17 @@ export class SidebarService {
       ],
     },
     { id: '3', name: 'README.md', type: 'file' },
-  ]);
+  ])
 
   open() {
-    this.isOpen.value = true;
+    this.isOpen.value = true
   }
 
   close() {
-    this.isOpen.value = false;
+    this.isOpen.value = false
   }
 
   toggle() {
-    this.isOpen.value = !this.isOpen.value;
+    this.isOpen.value = !this.isOpen.value
   }
 }

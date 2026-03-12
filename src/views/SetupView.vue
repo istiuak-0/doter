@@ -1,24 +1,13 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
-import Card from '@/components/Card.vue';
-import Input from '@/components/Input.vue';
-import Button from '@/components/Button.vue';
-import Logo from '@/components/Logo.vue';
-import { obtain } from 'iocraft';
-import { Nav } from 'iocraft/common';
-import { SetupService } from '@/services/Setup.service';
-import { OverlayService } from '@/revet/overlay.service';
-import ConfirmDialog from '@/components/ConfirmDialog.vue';
+import { Icon } from '@iconify/vue'
+import Card from '@/components/Card.vue'
+import Input from '@/components/Input.vue'
+import Button from '@/components/Button.vue'
+import Logo from '@/components/Logo.vue'
+import { obtain } from 'iocraft'
+import { SetupService } from '@/services/Setup.service'
 
 const { handleSubmit, storageType, email, password, loading } = obtain(SetupService)
-
-
-
-
-
-
-
-
 </script>
 
 <template>
@@ -33,9 +22,7 @@ const { handleSubmit, storageType, email, password, loading } = obtain(SetupServ
           <h1 class="text-xl sm:text-2xl font-semibold text-heading mb-1 sm:mb-2">
             Welcome to Doter
           </h1>
-          <p class="text-xs sm:text-sm text-body">
-            Set up your note storage and get started
-          </p>
+          <p class="text-xs sm:text-sm text-body">Set up your note storage and get started</p>
         </div>
       </div>
 
@@ -46,14 +33,20 @@ const { handleSubmit, storageType, email, password, loading } = obtain(SetupServ
           <div class="flex flex-col gap-2">
             <label class="text-sm font-medium text-heading">Storage Type</label>
             <div class="grid grid-cols-3 gap-2">
-              <button type="button" @click="storageType = 'local'" :class="[
-                'flex flex-col items-center gap-1 sm:gap-1.5 rounded-lg border p-2 sm:p-3 transition-all min-w-[64px] sm:min-w-[72px]',
-                storageType === 'local'
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-border text-body hover:border-muted hover:bg-muted/50',
-              ]">
-                <Icon icon="mdi:harddisk"
-                  :class="['w-5 h-5 sm:w-6 sm:h-6', storageType === 'local' ? 'text-primary' : '']" />
+              <button
+                type="button"
+                @click="storageType = 'local'"
+                :class="[
+                  'flex flex-col items-center gap-1 sm:gap-1.5 rounded-lg border p-2 sm:p-3 transition-all min-w-[64px] sm:min-w-[72px]',
+                  storageType === 'local'
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-border text-body hover:border-muted hover:bg-muted/50',
+                ]"
+              >
+                <Icon
+                  icon="mdi:harddisk"
+                  :class="['w-5 h-5 sm:w-6 sm:h-6', storageType === 'local' ? 'text-primary' : '']"
+                />
                 <span class="text-[10px] sm:text-xs font-medium">Local</span>
               </button>
 

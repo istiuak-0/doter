@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
+import { Icon } from '@iconify/vue'
 
 interface Props {
-  modelValue: string;
-  type?: 'text' | 'email' | 'password';
-  placeholder?: string;
-  label?: string;
-  error?: string;
-  icon?: string;
+  modelValue: string
+  type?: 'text' | 'email' | 'password'
+  placeholder?: string
+  label?: string
+  error?: string
+  icon?: string
 }
 
 withDefaults(defineProps<Props>(), {
   type: 'text',
-});
+})
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string];
-}>();
+  'update:modelValue': [value: string]
+}>()
 </script>
 
 <template>
@@ -42,7 +42,9 @@ const emit = defineEmits<{
           'text-sm sm:text-base',
           'py-2 sm:py-2.5',
           icon ? 'pl-9 sm:pl-10 pr-3 sm:pr-4' : 'px-3 sm:px-4',
-          error ? 'border-destructive focus:ring-destructive/50' : 'border-border hover:border-muted',
+          error
+            ? 'border-destructive focus:ring-destructive/50'
+            : 'border-border hover:border-muted',
         ]"
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />

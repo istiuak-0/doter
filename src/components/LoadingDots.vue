@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="loading-dots">
@@ -44,7 +43,8 @@
     box-shadow: 0 0 0 2px #5aaeff;
     transform: scale(1);
   }
-  60%, 100% {
+  60%,
+  100% {
     box-shadow: 0 0 0 -3px #5aaeff;
     transform: scale(0.8);
   }

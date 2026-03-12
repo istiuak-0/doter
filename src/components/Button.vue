@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import LoadingDots from '@/components/LoadingDots.vue';
+import LoadingDots from '@/components/LoadingDots.vue'
 
 interface Props {
-  type?: 'button' | 'submit';
-  disabled?: boolean;
-  loading?: boolean;
-  className?: string;
+  type?: 'button' | 'submit'
+  disabled?: boolean
+  loading?: boolean
+  className?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
   disabled: false,
   loading: false,
   className: '',
-});
+})
 </script>
 
 <template>
@@ -23,8 +23,8 @@ withDefaults(defineProps<Props>(), {
     :class="[
       'btn-primary w-full text-sm sm:text-base py-2 sm:py-2.5 min-h-[44px] sm:min-h-[48px]',
       loading ? 'loading' : '',
-      (disabled || loading) ? 'cursor-not-allowed opacity-50' : '',
-      className
+      disabled || loading ? 'cursor-not-allowed opacity-50' : '',
+      className,
     ]"
   >
     <LoadingDots v-if="loading" />
