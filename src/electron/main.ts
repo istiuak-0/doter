@@ -1,8 +1,9 @@
 import { app, BrowserWindow, shell } from 'electron'
-import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 process.env.APP_ROOT = path.join(__dirname, '..')
 

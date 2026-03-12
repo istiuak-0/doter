@@ -1,15 +1,33 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "experimentalDecorators": true,
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./src/*"]
     },
-    {
-      "path": "./tsconfig.app.json"
-    }
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "rootDir": "./",
+    "noEmit": true
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.vue",
+    "vite.config.ts"
   ],
   "exclude": [
-    "electron",
+    "src/**/__tests__/*",
+    "node_modules",
     "dist",
     "dist-electron"
   ]
