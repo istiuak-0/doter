@@ -3,7 +3,7 @@
   "include": [
     "env.d.ts",
     "src/**/*",
-    "src/**/*.vue"
+    "src/**/*.vue",
   ],
   "exclude": [
     "src/**/__tests__/*"
@@ -11,9 +11,7 @@
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "types": [
-      "@types/wicg-file-system-access"
-    ],
+    "types": [],
     "noUncheckedIndexedAccess": true,
     "paths": {
       "@/*": [
