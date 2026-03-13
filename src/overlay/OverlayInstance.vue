@@ -1,32 +1,29 @@
-<!-- OverlayInstance.vue -->
 <script setup lang="ts">
 import { exposeCtx } from 'iocraft'
-import type { LiveInstance, OverlayOptions } from './overly.types'
-import { OverlayRef } from './OverlayRef'
 import { onUnmounted } from 'vue'
+import { LiveInstance } from './overly.types';
 
-const props = defineProps<{
-  inst: LiveInstance
-}>()
+const props = defineProps<{ inst: LiveInstance }>()
 
 exposeCtx(props.inst.overlayRef)
+
 let observer: ResizeObserver | null = null
 
 function onMount(el: HTMLElement | null) {
-  if (!el) return
-  if (props.inst.options.anchor) {
-    observer = new ResizeObserver(() => applyPosition(el, props.inst.options))
-    observer.observe(props.inst.options.anchor)
-    observer.observe(el)
-    applyPosition(el, props.inst.options)
-  }
-}
+  if (!el || !props.inst.options.anchor) return
 
-function applyPosition(el: HTMLElement, options: OverlayOptions) {
-  const rect = options.anchor!.getBoundingClientRect()
-  el.style.position = 'fixed'
-  el.style.top = `${rect.bottom + (options.top ?? 0)}px`
-  el.style.left = `${rect.left + (options.left ?? 0)}px`
+  const { anchor, top = 0, left = 0 } = props.inst.options
+
+  const applyPosition = () => {
+    const rect = anchor.getBoundingClientRect()
+    el.style.top = `${rect.bottom + top}px`
+    el.style.left = `${rect.left + left}px`
+  }
+
+  observer = new ResizeObserver(applyPosition)
+  observer.observe(anchor)
+  observer.observe(el)
+  applyPosition()
 }
 
 onUnmounted(() => observer?.disconnect())
