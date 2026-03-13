@@ -8,7 +8,5 @@ import ButtonGroup from '@/components/ButtonGroup.vue'
     <div class="fixed top-4 z-50 left-4">
       <ButtonGroup />
     </div>
-
-
   </div>
 </template>

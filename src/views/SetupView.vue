@@ -26,21 +26,23 @@ const { handleSubmit, storageType, loading } = obtain(SetupService)
           <div class="flex flex-col gap-2">
             <label class="text-sm font-medium text-heading">Storage Type</label>
             <div class="grid grid-cols-3 gap-2">
-              <button type="button" @click="storageType = 'local'" :class="[
-                'flex flex-col items-center gap-1.5 rounded-lg border p-3 transition-all',
-                storageType === 'local'
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-border text-body hover:border-muted hover:bg-muted/50',
-              ]">
+              <button
+                type="button"
+                @click="storageType = 'local'"
+                :class="[
+                  'flex flex-col items-center gap-1.5 rounded-lg border p-3 transition-all',
+                  storageType === 'local'
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-border text-body hover:border-muted hover:bg-muted/50',
+                ]"
+              >
                 <Icon icon="mdi:harddisk" class="w-6 h-6" />
                 <span class="text-xs font-medium">Local</span>
               </button>
             </div>
           </div>
 
-          <Button type="submit" :loading="loading" className="w-full mt-4">
-            Continue
-          </Button>
+          <Button type="submit" :loading="loading" className="w-full mt-4"> Continue </Button>
         </form>
       </div>
     </Card>

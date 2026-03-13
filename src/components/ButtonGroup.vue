@@ -12,7 +12,7 @@ function toggleSidebar() {
   overlay.toggle(Sidebar, {
     anchor: toggleBtn.value!,
     top: 8,
-  });
+  })
 }
 </script>
 

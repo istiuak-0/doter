@@ -1,14 +1,12 @@
 <!-- OverlayHost.vue -->
 <script setup lang="ts">
-import { reactive, computed } from 'vue';
-import Bus from './OverlayBus';
-import OverlayInstance from './OverlayInstance.vue';
-import type { LiveInstance } from './overly.types';
+import { reactive, computed } from 'vue'
+import Bus from './OverlayBus'
+import OverlayInstance from './OverlayInstance.vue'
+import type { LiveInstance } from './overly.types'
 
-
-
-const map = reactive<Record<string, LiveInstance>>({});
-const instances = computed(() => Object.values(map));
+const map = reactive<Record<string, LiveInstance>>({})
+const instances = computed(() => Object.values(map))
 
 Bus.on('overlay:open', (payload: any) => {
   map[payload.id] = {
@@ -16,12 +14,12 @@ Bus.on('overlay:open', (payload: any) => {
     component: payload.component,
     overlayRef: payload.overlayRef,
     options: payload.options,
-  };
-});
+  }
+})
 
 Bus.on('overlay:close', (payload: any) => {
   delete map[payload.id]
-});
+})
 </script>
 
 <template>
