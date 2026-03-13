@@ -3,26 +3,16 @@ import { ref } from 'vue'
 import { obtain } from 'iocraft'
 import { Icon } from '@iconify/vue'
 import Sidebar from '@/components/Sidebar.vue'
-import type { OverlayRef } from '@/overlay/overly.types'
 import { OverlayService } from '@/overlay/overlay.service'
 
 const overlay = obtain(OverlayService)
 const toggleBtn = ref<HTMLElement | null>(null)
-let sidebarRef: OverlayRef | null = null
 
 function toggleSidebar() {
-  if (sidebarRef) {
-    sidebarRef.close()
-    sidebarRef = null
-    return
-  }
-  sidebarRef = overlay.open(Sidebar, {
+  overlay.toggle(Sidebar, {
     anchor: toggleBtn.value!,
     top: 8,
-  })
-  sidebarRef.on('close', () => {
-    sidebarRef = null
-  })
+  });
 }
 </script>
 

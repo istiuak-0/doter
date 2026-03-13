@@ -17,24 +17,20 @@ const instances = computed(() => Object.values(map));
 
 Bus.on('overlay:open', (payload: any) => {
   map[payload.id] = {
-    id:         payload.id,
-    component:  payload.component,
+    id: payload.id,
+    component: payload.component,
     overlayRef: payload.overlayRef,
-    options:    payload.options,
+    options: payload.options,
   };
 });
 
 Bus.on('overlay:close', (payload: any) => {
-  setTimeout(() => delete map[payload.id], 300);
+  delete map[payload.id]
 });
 </script>
 
 <template>
   <Teleport to="body">
-    <OverlayInstance
-      v-for="inst in instances"
-      :key="inst.id"
-      :inst="inst"
-    />
+    <OverlayInstance v-for="inst in instances" :key="inst.id" :inst="inst" />
   </Teleport>
 </template>
