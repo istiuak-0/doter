@@ -1,27 +1,27 @@
 <!-- OverlayInstance.vue -->
 <script setup lang="ts">
 import { exposeCtx } from 'iocraft';
-import type { OverlayOptions, OverlayRef } from './overly.types';
+import type { LiveInstance, OverlayOptions } from './overly.types';
+import { OverlayRef } from './OverlayRef';
+import { onUnmounted } from 'vue';
 
-interface LiveInstance {
-  id: string;
-  component: any;
-  overlayRef: OverlayRef;
-  options: OverlayOptions;
-  observer?: ResizeObserver;
-}
 
-const props = defineProps<{ inst: LiveInstance }>();
+const props = defineProps<{
+  inst: LiveInstance
+}>();
+
+
 
 exposeCtx(props.inst.overlayRef);
+let observer: ResizeObserver | null = null;
+
 
 function onMount(el: HTMLElement | null) {
   if (!el) return;
   if (props.inst.options.anchor) {
-    const observer = new ResizeObserver(() => applyPosition(el, props.inst.options));
+    observer = new ResizeObserver(() => applyPosition(el, props.inst.options));
     observer.observe(props.inst.options.anchor);
     observer.observe(el);
-    props.inst.observer = observer;
     applyPosition(el, props.inst.options);
   }
 }
@@ -32,6 +32,8 @@ function applyPosition(el: HTMLElement, options: OverlayOptions) {
   el.style.top = `${rect.bottom + (options.top ?? 0)}px`;
   el.style.left = `${rect.left + (options.left ?? 0)}px`;
 }
+
+onUnmounted(() => observer?.disconnect()); 
 </script>
 
 <template>

@@ -3,14 +3,9 @@
 import { reactive, computed } from 'vue';
 import Bus from './OverlayBus';
 import OverlayInstance from './OverlayInstance.vue';
-import type { OverlayOptions, OverlayRef } from './overly.types';
+import type { LiveInstance } from './overly.types';
 
-interface LiveInstance {
-  id: string;
-  component: any;
-  overlayRef: OverlayRef;
-  options: OverlayOptions;
-}
+
 
 const map = reactive<Record<string, LiveInstance>>({});
 const instances = computed(() => Object.values(map));

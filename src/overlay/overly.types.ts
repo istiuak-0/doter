@@ -1,4 +1,4 @@
-import type { Component, Ref } from "vue";
+import { OverlayRef } from "./OverlayRef";
 
 export interface OverlayOptions {
   top?: number;
@@ -9,10 +9,9 @@ export interface OverlayOptions {
   data?: unknown;
 }
 
-export interface OverlayRef {
-  readonly id: string;
-  readonly options: OverlayOptions;
-  on(event: "close", handler: (data?: unknown) => void): void;
-  off(event: "close", handler: (data?: unknown) => void): void;
-  close(data?: unknown): void;
+export interface LiveInstance {
+  id: string;
+  component: any;
+  overlayRef: OverlayRef;
+  options: OverlayOptions;
 }
