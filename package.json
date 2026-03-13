@@ -12,6 +12,7 @@
     "format": "oxfmt src/"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.31.5",
     "iocraft": "^0.2.9",
     "vue": "beta",
     "vue-router": "^5.0.3"
