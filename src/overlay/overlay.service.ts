@@ -1,40 +1,29 @@
-import { attach } from "iocraft";
+import { attach, obtainNew } from "iocraft";
 import { ref } from "vue";
 import { markRaw } from "vue";
 import type { Component } from "vue";
 import Bus from "./OverlayBus";
-import type { OverlayOptions, OverlayRef } from "./overly.types";
+import type { OverlayOptions } from "./overly.types";
+import { OverlayRef } from "./OverlayRef";
 
 @attach()
 export class OverlayService {
   activeCount = ref(0);
 
   open(component: Component, options: OverlayOptions = {}): OverlayRef {
-    const id = `overlay-${crypto.randomUUID()}`;
-    const closeHandlers = new Set<(data?: unknown) => void>();
+    const overlayRef = obtainNew(OverlayRef);
+    overlayRef.id = `overlay-${crypto.randomUUID()}`;
+    overlayRef.options = options;
 
-    const overlayRef: OverlayRef = {
-      id,
-      options,
-
-      on(event, handler) {
-        if (event === "close") closeHandlers.add(handler);
-      },
-
-      off(event, handler) {
-        if (event === "close") closeHandlers.delete(handler);
-      },
-
-      close: (data?: unknown) => {
-        Bus.emit("overlay:close", { id, data });
-        closeHandlers.forEach((h) => h(data));
-        closeHandlers.clear();
-        this.activeCount.value++;
-      },
+    const emit = overlayRef.close.bind(overlayRef);
+    overlayRef.close = (data?: unknown) => {
+      Bus.emit("overlay:close", { id: overlayRef.id, data });
+      emit(data);
+      this.activeCount.value--;
     };
 
     Bus.emit("overlay:open", {
-      id,
+      id: overlayRef.id,
       component: markRaw(component),
       options,
       overlayRef,

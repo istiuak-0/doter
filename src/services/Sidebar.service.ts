@@ -10,8 +10,6 @@ interface FileTreeNode {
 
 @attach()
 export class SidebarService {
-  isOpen = ref(false)
-
   fileTreeData = ref<FileTreeNode[]>([
     {
       id: '1',
@@ -33,16 +31,4 @@ export class SidebarService {
     },
     { id: '3', name: 'README.md', type: 'file' },
   ])
-
-  open() {
-    this.isOpen.value = true
-  }
-
-  close() {
-    this.isOpen.value = false
-  }
-
-  toggle() {
-    this.isOpen.value = !this.isOpen.value
-  }
 }

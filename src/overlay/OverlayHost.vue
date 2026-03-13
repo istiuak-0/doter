@@ -17,10 +17,10 @@ const instances = computed(() => Object.values(map));
 
 Bus.on('overlay:open', (payload: any) => {
   map[payload.id] = {
-    id:         payload.id,
-    component:  payload.component,
+    id: payload.id,
+    component: payload.component,
     overlayRef: payload.overlayRef,
-    options:    payload.options,
+    options: payload.options,
   };
 });
 
@@ -44,8 +44,8 @@ function onMount(el: HTMLElement | null, inst: LiveInstance) {
 function applyPosition(el: HTMLElement, options: OverlayOptions) {
   const rect = options.anchor!.getBoundingClientRect();
   el.style.position = 'fixed';
-  el.style.top  = `${rect.bottom + (options.top  ?? 0)}px`;
-  el.style.left = `${rect.left   + (options.left ?? 0)}px`;
+  el.style.top = `${rect.bottom + (options.top ?? 0)}px`;
+  el.style.left = `${rect.left + (options.left ?? 0)}px`;
 }
 </script>
 
