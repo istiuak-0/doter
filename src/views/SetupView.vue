@@ -10,6 +10,7 @@ const { handleSubmit, storageType, loading } = obtain(SetupService)
 </script>
 <template>
   <div class="bg-gradient-main min-h-screen flex items-center justify-center p-4">
+        <button @click="$router.push('/test')">Test</button>
     <Card class="w-full max-w-md mx-auto">
       <div class="px-6 pt-8 pb-6">
         <div class="flex justify-center mb-6">
@@ -22,7 +23,7 @@ const { handleSubmit, storageType, loading } = obtain(SetupService)
       </div>
 
       <div class="px-6 pb-8">
-        <form @submit.prevent="handleSubmit" class="space-y-5">
+        <form @submit.prevent=handleSubmit class="space-y-5">
           <div class="flex flex-col gap-2">
             <label class="text-sm font-medium text-heading">Storage Type</label>
             <div class="grid grid-cols-3 gap-2">
